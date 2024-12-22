@@ -6,7 +6,7 @@ from django.db import migrations, models
 
 def populate_user_data(apps, schema_editor):
     User = apps.get_model("actions_data", "User")
-    api_token = os.environ.get("ACTIONS_INSIDER_API_TOKEN")
+    api_token = os.environ.get("ACTIONS_INSIDER_API_TOKEN", "")
     User.objects.create(
         id=1679647,
         login="eduramirezh",
