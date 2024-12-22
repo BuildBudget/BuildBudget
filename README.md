@@ -79,4 +79,3 @@ consider:
 
 BuildBudget was created by [Edu Ramírez](https://www.linkedin.com/in/eduramirez/). It was born out of the need for
 better control over GitHub Actions spending in large organizations.
-
