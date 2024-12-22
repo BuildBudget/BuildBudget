@@ -12,6 +12,21 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+        options: >-
+          --health-cmd "pg_isready -U test_user -d test_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,3 +42,4 @@ jobs:
         env:
           GITHUB_APP_PRIVATE_KEY: 'fakekey'
           MAIN_URL: 'https://buildbudget.test'
+          DATABASE_URL: postgres://test_user:test_password@localhost:5432/test_db
