@@ -24,3 +24,5 @@ jobs:
 
       - name: Run pre-commit hooks
         run: pre-commit run --all-files
+        env:
+          GITHUB_APP_PRIVATE_KEY: 'fakekey'
