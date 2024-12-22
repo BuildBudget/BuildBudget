@@ -1,0 +1,192 @@
+- model: actions_data.jobstats
+  pk: 1
+  fields:
+    job: 30600512298
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:29+00:00
+    execution_time: 00:01:26
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 2
+  fields:
+    job: 30600528832
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:39:58+00:00
+    execution_time: 00:03:55
+    billable_time: 00:04:00
+- model: actions_data.jobstats
+  pk: 3
+  fields:
+    job: 30600533006
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:04+00:00
+    completed_at: 2024-09-24 17:37:34+00:00
+    execution_time: 00:01:30
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 4
+  fields:
+    job: 30600535070
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:40:12+00:00
+    execution_time: 00:04:09
+    billable_time: 00:05:00
+- model: actions_data.jobstats
+  pk: 5
+  fields:
+    job: 30600538252
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:37:30+00:00
+    execution_time: 00:01:28
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 6
+  fields:
+    job: 30600544107
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:40:18+00:00
+    execution_time: 00:04:16
+    billable_time: 00:05:00
+- model: actions_data.jobstats
+  pk: 14
+  fields:
+    job: 30600547625
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:44+00:00
+    execution_time: 00:01:41
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 15
+  fields:
+    job: 30600550825
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:43+00:00
+    execution_time: 00:03:41
+    billable_time: 00:04:00
+- model: actions_data.jobstats
+  pk: 16
+  fields:
+    job: 30600553875
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:52+00:00
+    execution_time: 00:01:49
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 17
+  fields:
+    job: 30600558108
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:40:02+00:00
+    execution_time: 00:04:00
+    billable_time: 00:04:00
+- model: actions_data.jobstats
+  pk: 265439
+  fields:
+    job: 30600488981
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:32+00:00
+    execution_time: 00:01:29
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 265440
+  fields:
+    job: 30600494184
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:29+00:00
+    execution_time: 00:03:27
+    billable_time: 00:04:00
+- model: actions_data.jobstats
+  pk: 265441
+  fields:
+    job: 30600498481
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:26+00:00
+    execution_time: 00:01:23
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 265442
+  fields:
+    job: 30600502590
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:54+00:00
+    execution_time: 00:03:52
+    billable_time: 00:04:00
+- model: actions_data.jobstats
+  pk: 265443
+  fields:
+    job: 30600506041
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:23+00:00
+    execution_time: 00:01:20
+    billable_time: 00:02:00
+- model: actions_data.jobstats
+  pk: 265514
+  fields:
+    job: 30600508884
+    workflow_run: 27261
+    workflow: 39667626
+    repository: 259445878
+    owner_entity: 9919
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:40:32+00:00
+    execution_time: 00:04:29
+    billable_time: 00:05:00

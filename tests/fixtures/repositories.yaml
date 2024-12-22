@@ -1,0 +1,14 @@
+- model: actions_data.repository
+  pk: 852842159
+  fields:
+    name: hello-world
+    webhook_enabled: false
+    last_webhook_received: null
+    owner: 180552589
+- model: actions_data.repository
+  pk: 838823510
+  fields:
+    name: actions-insider
+    webhook_enabled: true
+    last_webhook_received: null
+    owner: 1679647

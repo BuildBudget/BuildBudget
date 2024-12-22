@@ -1,0 +1,241 @@
+{% extends "actions_data/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="cost-config-container">
+        <div class="explanation-section">
+            <h1>Workflow Cost Configuration</h1>
+            <p>Adjust the price per-minute for each runner. If you don't know it for sure, a best estimation can be good
+                enough.</p>
+            <p>Here are links to pricing info for some runners providers:</p>
+            <ul>
+                <li>
+                    <a href="https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions">GitHub</a>
+                </li>
+                <li><a href="https://aws.amazon.com/codebuild/pricing/">AWS CodeBuild Lambda</a></li>
+            </ul>
+        </div>
+
+        {% if formset %}
+            <div class="labels-section">
+                <h2>Runner Label Cost Rates</h2>
+
+                {{ formset.management_form }}
+
+                <table class="labels-table">
+                    <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Jobs last month</th>
+                        <th>Rate ($/minute)</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for form in formset %}
+                        <tr>
+                            <form method="post" action="{% url 'label_management' %}">
+                                {% csrf_token %}
+                                <td>
+                                    {{ form.label }}
+                                </td>
+                                <td>{{ form.label_count }}</td>
+                                <td>
+                                    {{ form.per_minute_rate }}
+                                    {% if form.non_field_errors %}
+                                        <div class="error-message">{{ form.non_field_errors }}</div>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button type="submit" class="secondary-button">Save</button>
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                No labels found in your recent jobs.
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .cost-config-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .config-form > * + * {
+            margin-top: 2rem;
+        }
+
+        h2 {
+            color: #1a2b3c;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .radio-group label {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            align-items: start;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .radio-group label:hover {
+            border-color: #4CAF50;
+            background: #f7faf7;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-top: 0.25rem;
+        }
+
+
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .labels-section {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .labels-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            font-weight: 600;
+            color: #1a2b3c;
+            background: #f8fafc;
+        }
+
+        td input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background: #f8fafc;
+        }
+
+        td input[type="number"] {
+            width: 150px;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .secondary-button {
+            background: #4CAF50;
+            color: white;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            min-width: 80px;
+        }
+
+        .secondary-button:hover {
+            background: #45a049;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: #fff;
+            border-radius: 8px;
+            color: #64748b;
+        }
+
+        .label-form {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (max-width: 640px) {
+            .cost-config-container {
+                padding: 1rem;
+            }
+
+            .radio-group label {
+                grid-template-columns: 1fr;
+            }
+
+            .secondary-button {
+                width: 100%;
+            }
+
+            td input[type="number"] {
+                width: 100%;
+            }
+
+            .label-form {
+                flex-direction: column;
+            }
+        }
+
+        .explanation-section {
+            margin-bottom: 2rem;
+        }
+
+        .explanation-section h1 {
+            font-size: 1.5rem;
+            color: #1a2b3c;
+            margin-bottom: 1rem;
+        }
+
+        .explanation-section p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .explanation-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: #4a5568;
+        }
+
+        .explanation-section li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,7 @@
+- model: actions_data.repository
+  pk: 259445878
+  fields:
+    name: codeql-action
+    webhook_enabled: false
+    last_webhook_received: null
+    owner: 9919

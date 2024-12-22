@@ -1,0 +1,518 @@
+{% extends 'actions_data/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Organization {{ object.login }} {% endblock %}
+
+{% block content %}
+    <div class="summary-container">
+        <div class="header-container">
+            <div class="organization-title">
+                <h1>{{ object.login }}</h1>
+            </div>
+
+            <a href="https://github.com/{{ object.login }}" class="github-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                          d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
+                </svg>
+                View organization on GitHub
+            </a>
+        </div>
+
+        <div class="filter-container">
+            <form method="get" class="date-filter-form">
+                <div class="date-inputs">
+                    <div class="filter-group">
+                        <label for="start_date">From</label>
+                        <input
+                                type="date"
+                                id="start_date"
+                                name="start_date"
+                                value="{{ start_date|date:'Y-m-d' }}"
+                        >
+                    </div>
+                    <div class="filter-group">
+                        <label for="end_date">To</label>
+                        <input
+                                type="date"
+                                id="end_date"
+                                name="end_date"
+                                value="{{ end_date|date:'Y-m-d' }}"
+                        >
+                    </div>
+                </div>
+                <button type="submit" class="button">Apply Filter</button>
+            </form>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>Organization Stats</h3>
+                <div class="stat-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Repositories</span>
+                        <span class="stat-value">{{ total_repositories|intcomma }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Workflows</span>
+                        <span class="stat-value">{{ total_workflows|intcomma }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Runs</span>
+                        <span class="stat-value">{{ total_runs|intcomma }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <h3>Cost Overview</h3>
+                <div class="stat-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Cost</span>
+                        <span class="stat-value">${{ total_org_cost|floatformat:2|intcomma }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Cost per Run</span>
+                        <span class="stat-value">${{ avg_cost_per_run|floatformat:2 }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Trigger Cost Analysis</h3>
+                <div class="table-responsive">
+                    <table class="summary-table">
+                        <thead>
+                        <tr>
+                            <th class="sortable-header">Trigger</th>
+                            <th class="sortable-header">Total Runs</th>
+                            <th class="sortable-header">Total Cost</th>
+                            <th class="sortable-header">Avg Cost/Run</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for trigger in trigger_analysis %}
+                            <tr>
+                                <td>{{ trigger.trigger }}</td>
+                                <td data-sort-value="{{ trigger.total_runs }}">{{ trigger.total_runs|intcomma }}</td>
+                                <td data-sort-value="{{ trigger.total_cost }}">
+                                    ${{ trigger.total_cost|floatformat:2 }}</td>
+                                <td data-sort-value="{{ trigger.avg_cost }}">${{ trigger.avg_cost|floatformat:2 }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chart-container full-width">
+                <h3>Daily Cost Trend by Repository</h3>
+                <div id="costTrendChart" class="chart-area"></div>
+            </div>
+        </div>
+
+        <div class="repository-summary-section">
+            <h3>Repository Analysis</h3>
+            <div class="table-responsive">
+                <table class="summary-table">
+                    <thead>
+                    <tr>
+                        <th class="sortable-header">Repository Name</th>
+                        <th class="sortable-header">Total Cost</th>
+                        <th class="sortable-header">Total Runs</th>
+                        <th class="sortable-header">Workflows</th>
+                        <th class="sortable-header">Avg Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for repo in repository_stats %}
+                        <tr>
+                            <td>{{ repo.repository__name }}</td>
+                            <td data-sort-value="{{ repo.total_cost }}">
+                                ${{ repo.total_cost|floatformat:2 }}</td>
+                            <td data-sort-value="{{ repo.run_count }}">{{ repo.run_count|intcomma }}</td>
+                            <td data-sort-value="{{ repo.workflow_count }}">{{ repo.workflow_count }}</td>
+                            <td data-sort-value="{{ repo.avg_execution_time.total_seconds }}">
+                                {{ repo.avg_execution_time|naturaltime }}</td>
+                            <td>
+                                {% block repository_link %}
+                                    <a href="{% url 'repository_stats' pk=repo.repository_id %}" class="button">View
+                                        Details</a>
+                                {% endblock %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        /* Layout Containers */
+        .summary-container {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .organization-title h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background-color: #f6f8fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            color: #24292f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .github-link:hover {
+            background-color: #f3f4f6;
+            border-color: #bbb;
+            color: #000;
+        }
+
+        .filter-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .date-filter-form {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .date-inputs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .filter-group input {
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        /* Stats Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart-area {
+            min-height: 400px;
+        }
+
+        /* Tables */
+        .repository-summary-section {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .sortable-header::after {
+            content: '⇅';
+            right: 0.5rem;
+            color: #999;
+        }
+
+        .sortable-header.sort-asc::after {
+            content: '↑';
+            color: #4CAF50;
+        }
+
+        .sortable-header.sort-desc::after {
+            content: '↓';
+            color: #4CAF50;
+        }
+
+        .summary-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .summary-container {
+                padding: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .github-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .date-filter-form {
+                flex-direction: column;
+            }
+
+            .date-inputs {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        const costData = {{ cost_trend|safe }};
+        const chartDom = document.getElementById('costTrendChart');
+        const chart = echarts.init(chartDom);
+
+        // Cost Trend Chart
+        chart.setOption({
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    let result = params[0].axisValue + '<br/>';
+                    let total = 0;
+                    params.forEach(param => {
+                        result += param.marker + param.seriesName + ': $' + param.value.toFixed(2) + '<br/>';
+                        total += param.value;
+                    });
+                    result += '<b>Total: $' + total.toFixed(2) + '</b>';
+                    return result;
+                }
+            },
+            legend: {
+                data: costData.repositories.map(r => r.name),
+                orient: 'horizontal',
+                type: 'scroll',
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                top: '40px',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: costData.dates,
+                axisLabel: {
+                    rotate: 45,
+                    interval: 'auto'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '${value}'
+                }
+            },
+            series: costData.repositories.map(repository => ({
+                name: repository.name,
+                type: 'bar',
+                stack: 'Total',
+                areaStyle: {},
+                emphasis: {
+                    focus: 'series'
+                },
+                data: repository.values
+            }))
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+
+        // Initialize chart on load
+        document.addEventListener('DOMContentLoaded', () => {
+            chart.resize();
+        });
+
+        // Table sorting functionality
+        function sortTable(table, column) {
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const headers = table.querySelectorAll('th');
+            const currentOrder = headers[column].dataset.order || 'asc';
+
+            headers.forEach(header => header.classList.remove('sort-asc', 'sort-desc'));
+            headers[column].classList.add(`sort-${currentOrder}`);
+
+            rows.sort((a, b) => {
+                const aCell = a.cells[column];
+                const bCell = b.cells[column];
+
+                // Get values from data attribute or fall back to text content
+                const aVal = aCell.dataset.sortValue !== undefined ?
+                    parseFloat(aCell.dataset.sortValue) || aCell.dataset.sortValue :
+                    aCell.textContent.trim();
+
+                const bVal = bCell.dataset.sortValue !== undefined ?
+                    parseFloat(bCell.dataset.sortValue) || bCell.dataset.sortValue :
+                    bCell.textContent.trim();
+
+                // If both values are numbers, do numeric comparison
+                if (typeof aVal === 'number' && typeof bVal === 'number') {
+                    return currentOrder === 'asc' ? aVal - bVal : bVal - aVal;
+                }
+
+                // Otherwise, do string comparison
+                return currentOrder === 'asc' ?
+                    String(aVal).localeCompare(String(bVal)) :
+                    String(bVal).localeCompare(String(aVal));
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+            headers[column].dataset.order = currentOrder === 'asc' ? 'desc' : 'asc';
+        }
+
+        // Add sorting to tables
+        document.querySelectorAll('.summary-table').forEach(table => {
+            const headers = table.querySelectorAll('.sortable-header');
+            headers.forEach((header, index) => {
+                header.addEventListener('click', () => sortTable(table, index));
+            });
+        });
+    </script>
+{% endblock %}

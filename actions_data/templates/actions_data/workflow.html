@@ -1,0 +1,585 @@
+{% extends 'actions_data/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Workflow {{ workflow.name }} {% endblock %}
+
+{% block content %}
+    <div class="summary-container">
+        <div class="header-container">
+            <div class="workflow-title">
+                {% block repo_name %}
+                    <div class="repo-name"><a
+                            href="{% url 'repository_stats' pk=workflow.repository_id %}">{{ workflow.repository.owner.login }}/{{ workflow.repository.name }}</a>
+                    </div>
+                {% endblock %}
+                <h1>{{ workflow.name }}</h1>
+                <div class="workflow-path">{{ workflow.path }}</div>
+            </div>
+            <a href="{{ workflow.html_url }}" target="_blank" class="github-link">
+                <svg width="20" height="20" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                          d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
+                </svg>
+                View workflow on GitHub
+            </a>
+        </div>
+        <div class="filter-container">
+            <form method="get" class="date-filter-form">
+                <div class="date-inputs">
+                    <div class="filter-group">
+                        <label for="start_date">From</label>
+                        <input
+                                type="date"
+                                id="start_date"
+                                name="start_date"
+                                value="{{ start_date|date:'Y-m-d' }}"
+                        >
+                    </div>
+                    <div class="filter-group">
+                        <label for="end_date">To</label>
+                        <input
+                                type="date"
+                                id="end_date"
+                                name="end_date"
+                                value="{{ end_date|date:'Y-m-d' }}"
+                        >
+                    </div>
+                </div>
+                <button type="submit" class="button">Apply Filter</button>
+            </form>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>Workflow Stats</h3>
+                <div class="stat-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Runs</span>
+                        <span class="stat-value">{{ total_runs|intcomma }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <h3>Cost Overview</h3>
+                <div class="stat-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Workflow cost</span>
+                        <span class="stat-value">${{ total_workflow_cost|floatformat:2|intcomma }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Cost per Run</span>
+                        <span class="stat-value">${{ avg_cost_per_run|floatformat:2 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <h3>Time Metrics</h3>
+                <div class="stat-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Execution Time</span>
+                        <span class="stat-value">{{ avg_execution_time|naturaltime }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Billable Time</span>
+                        <span class="stat-value">{{ avg_billable_time|naturaltime }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3>Trigger Distribution</h3>
+                <div id="triggerChart" class="chart-area"></div>
+            </div>
+
+            <div class="chart-container full-width">
+                <h3>Daily Cost Trend</h3>
+                <div id="costTrendChart" class="chart-area"></div>
+            </div>
+        </div>
+
+        <!-- Job Analysis Section -->
+        <div class="analysis-section">
+            <h3>Job Analysis</h3>
+            <div class="table-responsive">
+                <table class="summary-table">
+                    <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Cost Impact</th>
+                        <th>Execution Rate</th>
+                        <th>Avg Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for job in jobs_analysis %}
+                        <tr>
+                            <td class="job-name">{{ job.name }}</td>
+                            <td>${{ job.cost_impact|floatformat:3 }}/run</td>
+                            <td>{{ job.execution_rate|floatformat:1 }}%</td>
+                            <td> {{ job.avg_duration|naturaltime }} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Runs Section -->
+        <div class="recent-runs-section">
+            <h3>Recent Runs</h3>
+            <div class="table-responsive">
+                <table class="summary-table">
+                    <thead>
+                    <tr>
+                        <th>Run ID</th>
+                        <th>Cost</th>
+                        <th>Trigger</th>
+                        <th>Conclusion</th>
+                        <th>Started</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for run in recent_runs %}
+                        <tr>
+                            <td>{{ run.id }}</td>
+                            <td>${{ run.cost|floatformat:2 }}</td>
+                            <td>{{ run.trigger_type }}</td>
+                            <td>{{ run.conclusion }}</td>
+                            <td data-timestamp="{{ run.started_at|date:'U' }}">{{ run.started_at|naturaltime }}</td>
+                            <td>{{ run.duration|naturaltime }}</td>
+                            <td>
+                                <a href="{{ run.html_url }}" target="_blank" class="button">View Run</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        /* Layout Containers */
+        .summary-container {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .workflow-title h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .workflow-path {
+            color: #666;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background-color: #f6f8fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            color: #24292f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .github-link:hover {
+            background-color: #f3f4f6;
+            border-color: #bbb;
+            color: #000;
+        }
+
+        .github-link svg {
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .github-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Stats Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Stats Styling */
+        .stat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart-area {
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Tables */
+        .analysis-section,
+        .recent-runs-section {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+            white-space: nowrap;
+        }
+
+        .summary-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            text-align: left;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+
+        .summary-table th::after {
+            content: '⇅';
+            position: absolute;
+            right: 0.5rem;
+            color: #999;
+        }
+
+        .summary-table th.sort-asc::after {
+            content: '↑';
+            color: #4CAF50;
+        }
+
+        .summary-table th.sort-desc::after {
+            content: '↓';
+            color: #4CAF50;
+        }
+
+
+        .job-name {
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+
+        .repo-name {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+        }
+
+        .filter-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .date-filter-form {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .date-inputs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .filter-group input {
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .date-filter-form {
+                flex-direction: column;
+            }
+
+            .date-inputs {
+                flex-direction: column;
+            }
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-container {
+                padding: 1rem;
+            }
+
+            .job-name {
+                max-width: 200px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        const charts = {
+            trigger: echarts.init(document.getElementById('triggerChart')),
+            costTrend: echarts.init(document.getElementById('costTrendChart'))
+        };
+
+        // Trigger Distribution Chart
+        charts.trigger.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                textStyle: {overflow: 'break'}
+            },
+            series: [{
+                type: 'pie',
+                radius: '60%',
+                data: {{ trigger_distribution|safe }},
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+
+
+        // Cost Trend Chart
+        charts.costTrend.setOption({
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    return `${params[0].name}<br/>Cost: $${params[0].value.toFixed(2)}`;
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: {{ cost_trend.dates|safe }},
+                axisLabel: {
+                    rotate: 45,
+                    interval: 'auto'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '${value}'
+                }
+            },
+            series: [{
+                data: {{ cost_trend.values|safe }},
+                type: 'bar',
+                itemStyle: {
+                    color: '#4CAF50'
+                }
+            }]
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            Object.values(charts).forEach(chart => chart.resize());
+        });
+
+        function sortTable(table, column) {
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const headers = table.querySelectorAll('th');
+            const currentOrder = headers[column].dataset.order || 'asc';
+
+            headers.forEach(header => header.classList.remove('sort-asc', 'sort-desc'));
+            headers[column].classList.add(`sort-${currentOrder}`);
+
+            rows.sort((a, b) => {
+                let aVal = a.cells[column].textContent.trim();
+                let bVal = b.cells[column].textContent.trim();
+
+                // Handle currency values
+                if (aVal.startsWith('$')) {
+                    return currentOrder === 'asc' ?
+                        parseFloat(aVal.slice(1)) - parseFloat(bVal.slice(1)) :
+                        parseFloat(bVal.slice(1)) - parseFloat(aVal.slice(1));
+                }
+
+                // Handle percentage values
+                if (aVal.endsWith('%')) {
+                    return currentOrder === 'asc' ?
+                        parseFloat(aVal) - parseFloat(bVal) :
+                        parseFloat(bVal) - parseFloat(aVal);
+                }
+
+                if (a.cells[column].hasAttribute('data-timestamp')) {
+                    const aTime = parseInt(a.cells[column].dataset.timestamp);
+                    const bTime = parseInt(b.cells[column].dataset.timestamp);
+                    return currentOrder === 'asc' ? aTime - bTime : bTime - aTime;
+                }
+
+                // Handle duration values (if they use datetime attribute)
+                const aTime = a.cells[column].querySelector('time');
+                const bTime = b.cells[column].querySelector('time');
+                if (aTime && bTime) {
+                    const aDate = new Date(aTime.getAttribute('datetime'));
+                    const bDate = new Date(bTime.getAttribute('datetime'));
+                    return currentOrder === 'asc' ? aDate - bDate : bDate - aDate;
+                }
+
+                // Default string comparison
+                return currentOrder === 'asc' ?
+                    aVal.localeCompare(bVal) :
+                    bVal.localeCompare(aVal);
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+            headers[column].dataset.order = currentOrder === 'asc' ? 'desc' : 'asc';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const tables = document.querySelectorAll('.summary-table');
+            tables.forEach(table => {
+                const headers = table.querySelectorAll('th');
+                headers.forEach((header, index) => {
+                    header.style.cursor = 'pointer';
+                    header.addEventListener('click', () => sortTable(table, index));
+                });
+            });
+        });
+    </script>
+{% endblock %}

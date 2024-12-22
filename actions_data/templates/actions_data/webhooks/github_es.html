@@ -1,0 +1,231 @@
+{% extends "actions_data/base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="webhook-registration-section">
+        <div class="container">
+            <h2>Register GitHub Enterprise Server Webhook</h2>
+            <p>To start collecting data, you need to set up a global webhook in your GitHub Enterprise Server
+                instance.</p>
+
+
+            <ol class="instruction-list">
+                <li>Follow the <a
+                        href="https://docs.github.com/en/enterprise-server@3.14/webhooks/using-webhooks/creating-webhooks#creating-a-global-webhook-for-a-github-enterprise">official
+                    documentation</a></li>
+                <li>Add a new webhook with the following details:
+                    <ul>
+                        <li>
+                            Payload URL:
+                            <div class="copy-container">
+                                <input type="text" id="webhook-url" value="{{ webhook_url }}" readonly>
+                                <button class="copy-button" data-target="webhook-url">Copy</button>
+                            </div>
+                        </li>
+                        <li>Content type: <code>application/json</code></li>
+                        <li>
+                            Secret:
+                            <div class="copy-container">
+                                <input type="text" id="webhook-secret" value="{{ webhook_secret }}" readonly>
+                                <button class="copy-button" data-target="webhook-secret">Copy</button>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>In the "Which events would you like to trigger this webhook?" section, pick "Let me select
+                    individual events" and select "Workflow runs" and "Workflow jobs".
+                </li>
+            </ol>
+            <p>Once you've set up the webhook, we'll start receiving data, and you'll be able to view your GitHub
+                Actions costs.</p>
+
+            {% if existing_webhooks %}
+                <div id="existing-webhooks">
+                    <h3>Existing Webhooks</h3>
+                    <ul>
+                        {% for webhook in existing_webhooks %}
+                            <li>Webhook ID: {{ webhook.webhook_id }}, Host: {{ webhook.host }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+
+            <div id="webhook-status" class="alert">Waiting for new webhook verification...</div>
+            <div id="new-webhook-info" style="display: none;">
+                <h3>New Webhook</h3>
+                <p>Webhook ID: <span id="new-webhook-id"></span>, Host: <span id="new-webhook-host"></span></p>
+            </div>
+            <a href="{% url 'stats_by_job' %}" class="button">Go to Dashboard</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .webhook-registration-section {
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .instruction-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .instruction-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .instruction-list ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .copy-container {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        #webhook-secret {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .copy-button {
+            border-radius: 0 4px 4px 0;
+            padding: 0.5rem 1rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        #existing-webhooks {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+
+
+        #webhook-list li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+
+
+        .collapse-toggle .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        .collapse-toggle[aria-expanded="false"] .chevron {
+            transform: rotate(-90deg);
+        }
+
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const copyButtons = document.querySelectorAll('.copy-button');
+            const webhookStatus = document.getElementById('webhook-status');
+            const dashboardButton = document.querySelector('.button');
+            const newWebhookInfo = document.getElementById('new-webhook-info');
+            const newWebhookId = document.getElementById('new-webhook-id');
+            const newWebhookHost = document.getElementById('new-webhook-host');
+            const referenceTime = "{{ current_timestamp }}";
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', async function () {
+                    const targetId = this.getAttribute('data-target');
+                    const inputElement = document.getElementById(targetId);
+
+                    try {
+                        await navigator.clipboard.writeText(inputElement.value);
+                        this.textContent = 'Copied!';
+                        setTimeout(() => {
+                            this.textContent = 'Copy';
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+
+            function checkWebhookStatus() {
+                fetch(`{% url "new_webhook_status" %}?reference_time=${encodeURIComponent(referenceTime)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.verified) {
+                            webhookStatus.textContent = 'New webhook verified successfully!';
+                            webhookStatus.classList.add('success');
+                            dashboardButton.style.display = 'inline-block';
+                            clearInterval(pollInterval);
+
+                            if (data.new_webhook) {
+                                newWebhookInfo.style.display = 'block';
+                                newWebhookId.textContent = data.new_webhook.webhook_id;
+                                newWebhookHost.textContent = data.new_webhook.host;
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            checkWebhookStatus(); // Check immediately on page load
+            const pollInterval = setInterval(checkWebhookStatus, 5000); // Then check every 5 seconds
+
+
+        });
+    </script>
+{% endblock %}

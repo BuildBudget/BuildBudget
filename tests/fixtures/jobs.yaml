@@ -1,0 +1,1724 @@
+- model: actions_data.job
+  pk: 30600512298
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-7DKg
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600512298
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600512298
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, stable-v2.16.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:41+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:29+00:00
+    updated_at: 2024-10-08 17:53:38.154155+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:06Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:10Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:17Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:52Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:52Z'
+      completed_at: '2024-09-24T17:37:11Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:11Z'
+      completed_at: '2024-09-24T17:37:27Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:27Z'
+      completed_at: '2024-09-24T17:37:27Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:27Z'
+      completed_at: '2024-09-24T17:37:27Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:27Z'
+      completed_at: '2024-09-24T17:37:27Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600512298
+    labels:
+    - ubuntu-latest
+    runner_id: 365562
+    runner_name: GitHub Actions 1096
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600528832
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-8DwA
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600528832
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600528832
+    name: 'Go: tracing with autobuilder step (macos-latest, stable-v2.16.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:01+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:39:58+00:00
+    updated_at: 2024-10-08 17:53:38.162972+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:09Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:09Z'
+      completed_at: '2024-09-24T17:36:15Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:16Z'
+      completed_at: '2024-09-24T17:36:18Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:18Z'
+      completed_at: '2024-09-24T17:37:24Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:25Z'
+      completed_at: '2024-09-24T17:39:36Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:36Z'
+      completed_at: '2024-09-24T17:39:52Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:39:53Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:39:53Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:39:53Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:39:53Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:39:55Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:55Z'
+      completed_at: '2024-09-24T17:39:56Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600528832
+    labels:
+    - macos-latest
+    runner_id: 365530
+    runner_name: GitHub Actions 1064
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600533006
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-8UDg
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600533006
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600533006
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, stable-v2.17.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:06+00:00
+    started_at: 2024-09-24 17:36:04+00:00
+    completed_at: 2024-09-24 17:37:34+00:00
+    updated_at: 2024-10-08 17:53:38.171135+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:05Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:05Z'
+      completed_at: '2024-09-24T17:36:05Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:05Z'
+      completed_at: '2024-09-24T17:36:07Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:08Z'
+      completed_at: '2024-09-24T17:36:12Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:13Z'
+      completed_at: '2024-09-24T17:36:20Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:20Z'
+      completed_at: '2024-09-24T17:36:57Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:57Z'
+      completed_at: '2024-09-24T17:37:13Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:13Z'
+      completed_at: '2024-09-24T17:37:29Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:34Z'
+      completed_at: '2024-09-24T17:37:34Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:34Z'
+      completed_at: '2024-09-24T17:37:34Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600533006
+    labels:
+    - ubuntu-latest
+    runner_id: 14
+    runner_name: GitHub Actions 14
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600535070
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-8cHg
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600535070
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600535070
+    name: 'Go: tracing with autobuilder step (macos-latest, stable-v2.17.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:09+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:40:12+00:00
+    updated_at: 2024-10-08 17:53:38.179538+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:10Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:17Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:19Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:20Z'
+      completed_at: '2024-09-24T17:37:33Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:34Z'
+      completed_at: '2024-09-24T17:39:52Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:53Z'
+      completed_at: '2024-09-24T17:40:06Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:06Z'
+      completed_at: '2024-09-24T17:40:06Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:07Z'
+      completed_at: '2024-09-24T17:40:07Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:07Z'
+      completed_at: '2024-09-24T17:40:07Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:07Z'
+      completed_at: '2024-09-24T17:40:07Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:07Z'
+      completed_at: '2024-09-24T17:40:08Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:08Z'
+      completed_at: '2024-09-24T17:40:09Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600535070
+    labels:
+    - macos-latest
+    runner_id: 163
+    runner_name: GitHub Actions 163
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600538252
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-8ojA
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600538252
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600538252
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, default)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:12+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:37:30+00:00
+    updated_at: 2024-10-08 17:53:38.187036+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:05Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:05Z'
+      completed_at: '2024-09-24T17:36:09Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:09Z'
+      completed_at: '2024-09-24T17:36:16Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:57Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:57Z'
+      completed_at: '2024-09-24T17:37:10Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:11Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:29Z'
+      completed_at: '2024-09-24T17:37:29Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600538252
+    labels:
+    - ubuntu-latest
+    runner_id: 394
+    runner_name: GitHub Actions 394
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600544107
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-8_aw
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600544107
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600544107
+    name: 'Go: tracing with autobuilder step (macos-latest, default)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:19+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:40:18+00:00
+    updated_at: 2024-10-08 17:53:38.194555+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:01Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:10Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:17Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:20Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:21Z'
+      completed_at: '2024-09-24T17:37:32Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:33Z'
+      completed_at: '2024-09-24T17:39:55Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:55Z'
+      completed_at: '2024-09-24T17:40:12Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:13Z'
+      completed_at: '2024-09-24T17:40:13Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:13Z'
+      completed_at: '2024-09-24T17:40:13Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:13Z'
+      completed_at: '2024-09-24T17:40:13Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:14Z'
+      completed_at: '2024-09-24T17:40:14Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:14Z'
+      completed_at: '2024-09-24T17:40:15Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:15Z'
+      completed_at: '2024-09-24T17:40:16Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600544107
+    labels:
+    - macos-latest
+    runner_id: 365492
+    runner_name: GitHub Actions 1026
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600547625
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-9NKQ
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600547625
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600547625
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, linked)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:23+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:44+00:00
+    updated_at: 2024-10-08 17:53:38.203757+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:06Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:13Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:13Z'
+      completed_at: '2024-09-24T17:36:20Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:20Z'
+      completed_at: '2024-09-24T17:37:00Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:01Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:23Z'
+      completed_at: '2024-09-24T17:37:40Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:41Z'
+      completed_at: '2024-09-24T17:37:41Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600547625
+    labels:
+    - ubuntu-latest
+    runner_id: 201
+    runner_name: GitHub Actions 201
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600550825
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-9ZqQ
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600550825
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600550825
+    name: 'Go: tracing with autobuilder step (macos-latest, linked)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:28+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:43+00:00
+    updated_at: 2024-10-08 17:53:38.213142+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:00Z'
+      completed_at: '2024-09-24T17:36:02Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:02Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:07Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:08Z'
+      completed_at: '2024-09-24T17:36:13Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:14Z'
+      completed_at: '2024-09-24T17:36:15Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:16Z'
+      completed_at: '2024-09-24T17:37:11Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:12Z'
+      completed_at: '2024-09-24T17:39:17Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:19Z'
+      completed_at: '2024-09-24T17:39:36Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:37Z'
+      completed_at: '2024-09-24T17:39:37Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:37Z'
+      completed_at: '2024-09-24T17:39:37Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:37Z'
+      completed_at: '2024-09-24T17:39:37Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:38Z'
+      completed_at: '2024-09-24T17:39:38Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:38Z'
+      completed_at: '2024-09-24T17:39:39Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:39Z'
+      completed_at: '2024-09-24T17:39:41Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600550825
+    labels:
+    - macos-latest
+    runner_id: 387
+    runner_name: GitHub Actions 387
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600553875
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-9lkw
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600553875
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600553875
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, nightly-latest)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:31+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:52+00:00
+    updated_at: 2024-10-08 17:53:38.223188+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:07Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:07Z'
+      completed_at: '2024-09-24T17:36:16Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:24Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:24Z'
+      completed_at: '2024-09-24T17:37:00Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:00Z'
+      completed_at: '2024-09-24T17:37:30Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:30Z'
+      completed_at: '2024-09-24T17:37:47Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:47Z'
+      completed_at: '2024-09-24T17:37:47Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:47Z'
+      completed_at: '2024-09-24T17:37:47Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:48Z'
+      completed_at: '2024-09-24T17:37:48Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:48Z'
+      completed_at: '2024-09-24T17:37:48Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:48Z'
+      completed_at: '2024-09-24T17:37:48Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:48Z'
+      completed_at: '2024-09-24T17:37:48Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600553875
+    labels:
+    - ubuntu-latest
+    runner_id: 365566
+    runner_name: GitHub Actions 1100
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600558108
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-92HA
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600558108
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600558108
+    name: 'Go: tracing with autobuilder step (macos-latest, nightly-latest)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:36:37+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:40:02+00:00
+    updated_at: 2024-10-08 17:53:38.230865+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:01Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:08Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:08Z'
+      completed_at: '2024-09-24T17:36:15Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:15Z'
+      completed_at: '2024-09-24T17:36:17Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:23Z'
+      completed_at: '2024-09-24T17:39:38Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:38Z'
+      completed_at: '2024-09-24T17:39:55Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:56Z'
+      completed_at: '2024-09-24T17:39:56Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:57Z'
+      completed_at: '2024-09-24T17:39:57Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:57Z'
+      completed_at: '2024-09-24T17:39:57Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:57Z'
+      completed_at: '2024-09-24T17:39:57Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:57Z'
+      completed_at: '2024-09-24T17:39:59Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:59Z'
+      completed_at: '2024-09-24T17:40:00Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600558108
+    labels:
+    - macos-latest
+    runner_id: 365494
+    runner_name: GitHub Actions 1028
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600488981
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-5oFQ
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600488981
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600488981
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, stable-v2.13.5)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:13+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:32+00:00
+    updated_at: 2024-10-08 17:53:38.103384+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:06Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:12Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:12Z'
+      completed_at: '2024-09-24T17:36:19Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:19Z'
+      completed_at: '2024-09-24T17:36:51Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:52Z'
+      completed_at: '2024-09-24T17:37:13Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:14Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:28Z'
+      completed_at: '2024-09-24T17:37:28Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:29Z'
+      completed_at: '2024-09-24T17:37:29Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:29Z'
+      completed_at: '2024-09-24T17:37:29Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:29Z'
+      completed_at: '2024-09-24T17:37:29Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600488981
+    labels:
+    - ubuntu-latest
+    runner_id: 708
+    runner_name: GitHub Actions 708
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600494184
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-58aA
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600494184
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600494184
+    name: 'Go: tracing with autobuilder step (macos-12, stable-v2.13.5)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:20+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:29+00:00
+    updated_at: 2024-10-08 17:53:38.110670+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:01Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:05Z'
+      completed_at: '2024-09-24T17:36:14Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:15Z'
+      completed_at: '2024-09-24T17:36:24Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:24Z'
+      completed_at: '2024-09-24T17:36:29Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:29Z'
+      completed_at: '2024-09-24T17:38:08Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:38:09Z'
+      completed_at: '2024-09-24T17:38:58Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:38:59Z'
+      completed_at: '2024-09-24T17:39:23Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:23Z'
+      completed_at: '2024-09-24T17:39:23Z'
+    - name: Post Run /./../action/analyze
+      number: 14
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:24Z'
+      completed_at: '2024-09-24T17:39:24Z'
+    - name: Post Run /./../action/init
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:24Z'
+      completed_at: '2024-09-24T17:39:24Z'
+    - name: Post Run actions/setup-go@v5
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:25Z'
+      completed_at: '2024-09-24T17:39:25Z'
+    - name: Post Check out repository
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:25Z'
+      completed_at: '2024-09-24T17:39:26Z'
+    - name: Post Setup Python on MacOS
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:26Z'
+      completed_at: '2024-09-24T17:39:26Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:26Z'
+      completed_at: '2024-09-24T17:39:27Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600494184
+    labels:
+    - macos-12
+    runner_id: 365580
+    runner_name: GitHub Actions 1114
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600498481
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-6NMQ
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600498481
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600498481
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, stable-v2.14.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:25+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:26+00:00
+    updated_at: 2024-10-08 17:53:38.119215+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:06Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:10Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:18Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:18Z'
+      completed_at: '2024-09-24T17:36:50Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:50Z'
+      completed_at: '2024-09-24T17:37:06Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:07Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:22Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:22Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:22Z'
+      completed_at: '2024-09-24T17:37:22Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:26Z'
+      completed_at: '2024-09-24T17:37:26Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:26Z'
+      completed_at: '2024-09-24T17:37:26Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:23Z'
+      completed_at: '2024-09-24T17:37:23Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600498481
+    labels:
+    - ubuntu-latest
+    runner_id: 636
+    runner_name: GitHub Actions 636
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600502590
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-6dPg
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600502590
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600502590
+    name: 'Go: tracing with autobuilder step (macos-12, stable-v2.14.6)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:29+00:00
+    started_at: 2024-09-24 17:36:02+00:00
+    completed_at: 2024-09-24 17:39:54+00:00
+    updated_at: 2024-10-08 17:53:38.127963+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:04Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:04Z'
+      completed_at: '2024-09-24T17:36:05Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:15Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:16Z'
+      completed_at: '2024-09-24T17:36:24Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:24Z'
+      completed_at: '2024-09-24T17:36:30Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:30Z'
+      completed_at: '2024-09-24T17:38:23Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:38:23Z'
+      completed_at: '2024-09-24T17:39:22Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:23Z'
+      completed_at: '2024-09-24T17:39:48Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:48Z'
+      completed_at: '2024-09-24T17:39:48Z'
+    - name: Post Run /./../action/analyze
+      number: 14
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:48Z'
+      completed_at: '2024-09-24T17:39:48Z'
+    - name: Post Run /./../action/init
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:49Z'
+      completed_at: '2024-09-24T17:39:49Z'
+    - name: Post Run actions/setup-go@v5
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:50Z'
+      completed_at: '2024-09-24T17:39:50Z'
+    - name: Post Check out repository
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:50Z'
+      completed_at: '2024-09-24T17:39:51Z'
+    - name: Post Setup Python on MacOS
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:52Z'
+      completed_at: '2024-09-24T17:39:52Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:39:52Z'
+      completed_at: '2024-09-24T17:39:52Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600502590
+    labels:
+    - macos-12
+    runner_id: 792
+    runner_name: GitHub Actions 792
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600506041
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-6quQ
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600506041
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600506041
+    name: 'Go: tracing with autobuilder step (ubuntu-latest, stable-v2.15.5)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:33+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:37:23+00:00
+    updated_at: 2024-10-08 17:53:38.136551+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:02Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:06Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:06Z'
+      completed_at: '2024-09-24T17:36:10Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:17Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:18Z'
+      completed_at: '2024-09-24T17:36:50Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:50Z'
+      completed_at: '2024-09-24T17:37:04Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:04Z'
+      completed_at: '2024-09-24T17:37:20Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:20Z'
+      completed_at: '2024-09-24T17:37:20Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:20Z'
+      completed_at: '2024-09-24T17:37:20Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:21Z'
+      completed_at: '2024-09-24T17:37:21Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:21Z'
+      completed_at: '2024-09-24T17:37:21Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:23Z'
+      completed_at: '2024-09-24T17:37:23Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:21Z'
+      completed_at: '2024-09-24T17:37:21Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600506041
+    labels:
+    - ubuntu-latest
+    runner_id: 862
+    runner_name: GitHub Actions 862
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]
+- model: actions_data.job
+  pk: 30600508884
+  fields:
+    workflow_run: 27261
+    node_id: CR_kwDOD3bUds8AAAAHH-611A
+    url: https://api.github.com/repos/github/codeql-action/actions/jobs/30600508884
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781/job/30600508884
+    name: 'Go: tracing with autobuilder step (macos-latest, stable-v2.15.5)'
+    status: completed
+    conclusion: success
+    created_at: 2024-09-24 17:35:37+00:00
+    started_at: 2024-09-24 17:36:03+00:00
+    completed_at: 2024-09-24 17:40:32+00:00
+    updated_at: 2024-10-08 17:53:38.145255+00:00
+    steps:
+    - name: Set up job
+      number: 1
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:01Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Setup Python on MacOS
+      number: 2
+      status: completed
+      conclusion: skipped
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:03Z'
+    - name: Check out repository
+      number: 3
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:03Z'
+      completed_at: '2024-09-24T17:36:09Z'
+    - name: Prepare test
+      number: 4
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:10Z'
+      completed_at: '2024-09-24T17:36:16Z'
+    - name: Run actions/setup-go@v5
+      number: 5
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:17Z'
+      completed_at: '2024-09-24T17:36:19Z'
+    - name: Run /./../action/init
+      number: 6
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:36:20Z'
+      completed_at: '2024-09-24T17:37:31Z'
+    - name: Run /./../action/autobuild
+      number: 7
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:37:33Z'
+      completed_at: '2024-09-24T17:40:06Z'
+    - name: Run /./../action/analyze
+      number: 8
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:07Z'
+      completed_at: '2024-09-24T17:40:24Z'
+    - name: Run if [[ "${CODEQL_ACTION_DID_AUTOBUILD_GOLANG}" != true ]]; then
+      number: 9
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:25Z'
+      completed_at: '2024-09-24T17:40:25Z'
+    - name: Post Run /./../action/analyze
+      number: 15
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:25Z'
+      completed_at: '2024-09-24T17:40:25Z'
+    - name: Post Run /./../action/init
+      number: 16
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:26Z'
+      completed_at: '2024-09-24T17:40:26Z'
+    - name: Post Run actions/setup-go@v5
+      number: 17
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:26Z'
+      completed_at: '2024-09-24T17:40:26Z'
+    - name: Post Check out repository
+      number: 18
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:26Z'
+      completed_at: '2024-09-24T17:40:28Z'
+    - name: Complete job
+      number: 19
+      status: completed
+      conclusion: success
+      started_at: '2024-09-24T17:40:28Z'
+      completed_at: '2024-09-24T17:40:29Z'
+    check_run_url: https://api.github.com/repos/github/codeql-action/check-runs/30600508884
+    labels:
+    - macos-latest
+    runner_id: 607
+    runner_name: GitHub Actions 607
+    runner_group_id: 2
+    runner_group_name: GitHub Actions
+    webhook_events: [1]

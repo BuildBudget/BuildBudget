@@ -1,0 +1,27 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block blog_content %}
+<div class="blog-header">
+    <h1>BuildBudget Blog</h1>
+    <p class="blog-subtitle">Insights on cloud cost management and infrastructure optimization</p>
+</div>
+
+<div class="blog-grid">
+    {% for post in posts %}
+    <article class="blog-card">
+        <div class="blog-card-content">
+            <time datetime="{{ post.published_date|date:'Y-m-d' }}" class="blog-date">
+                {{ post.published_date|date:"F j, Y" }}
+            </time>
+            <h2 class="blog-title">
+                <a href="{% url 'blog:blog_post' post.slug %}">{{ post.title }}</a>
+            </h2>
+            <p class="blog-excerpt">{{ post.excerpt }}</p>
+            <div class="blog-footer">
+                <a href="{% url 'blog:blog_post' post.slug %}" class="read-more">Read More →</a>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

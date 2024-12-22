@@ -1,0 +1,141 @@
+responses:
+- response:
+    auto_calculate_content_length: false
+    body: '{"login":"actions-insider","id":180552589,"node_id":"O_kgDOCsMDjQ","url":"https://api.github.com/orgs/actions-insider","repos_url":"https://api.github.com/orgs/actions-insider/repos","events_url":"https://api.github.com/orgs/actions-insider/events","hooks_url":"https://api.github.com/orgs/actions-insider/hooks","issues_url":"https://api.github.com/orgs/actions-insider/issues","members_url":"https://api.github.com/orgs/actions-insider/members{/member}","public_members_url":"https://api.github.com/orgs/actions-insider/public_members{/member}","avatar_url":"https://avatars.githubusercontent.com/u/180552589?v=4","description":null,"is_verified":false,"has_organization_projects":true,"has_repository_projects":true,"public_repos":0,"public_gists":0,"followers":0,"following":0,"html_url":"https://github.com/actions-insider","created_at":"2024-09-05T14:16:03Z","updated_at":"2024-09-05T14:16:03Z","archived_at":null,"type":"Organization","total_private_repos":1,"owned_private_repos":1,"private_gists":0,"disk_usage":8,"collaborators":1,"billing_email":"edu.rh90@gmail.com","default_repository_permission":"read","members_can_create_repositories":true,"two_factor_requirement_enabled":false,"members_allowed_repository_creation_type":"all","members_can_create_public_repositories":true,"members_can_create_private_repositories":true,"members_can_create_internal_repositories":false,"members_can_create_pages":true,"members_can_fork_private_repositories":false,"web_commit_signoff_required":false,"members_can_create_public_pages":true,"members_can_create_private_pages":true,"deploy_keys_enabled_for_repositories":false,"plan":{"name":"free","space":976562499,"private_repos":10000,"filled_seats":2,"seats":0},"advanced_security_enabled_for_new_repositories":false,"dependabot_alerts_enabled_for_new_repositories":false,"dependabot_security_updates_enabled_for_new_repositories":false,"dependency_graph_enabled_for_new_repositories":false,"secret_scanning_enabled_for_new_repositories":false,"secret_scanning_push_protection_enabled_for_new_repositories":false,"secret_scanning_push_protection_custom_link_enabled":false,"secret_scanning_push_protection_custom_link":null,"secret_scanning_validity_checks_enabled":false}'
+    content_type: text/plain
+    headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+      Cache-Control: private, max-age=60, s-maxage=60
+      Content-Security-Policy: default-src 'none'
+      ETag: W/"02c862a78e33c722875caac14e25e57dd29c2748a9d57add7ab3026405bd5e52"
+      Last-Modified: Thu, 05 Sep 2024 14:16:03 GMT
+      Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding: chunked
+      Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes: admin:org, read:org, repo, user, write:org
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: deny
+      X-GitHub-Media-Type: github.v3; format=json
+      X-GitHub-Request-Id: C32F:33101:A92AAD6:AB92892:671D0DFB
+      X-OAuth-Scopes: admin:enterprise, admin:org, admin:org_hook, read:packages,
+        repo, user, workflow
+      X-RateLimit-Limit: '5000'
+      X-RateLimit-Remaining: '4894'
+      X-RateLimit-Reset: '1729959422'
+      X-RateLimit-Resource: core
+      X-RateLimit-Used: '106'
+      X-XSS-Protection: '0'
+      x-github-api-version-selected: '2022-11-28'
+      x-oauth-client-id: Ov23liPVKwqwjk08GrHY
+    method: GET
+    status: 200
+    url: https://api.github.com:443/orgs/actions-insider
+- response:
+    auto_calculate_content_length: false
+    body: '{"message":"Validation Failed","errors":[{"resource":"Hook","code":"custom","message":"Hook
+      already exists on this organization"}],"documentation_url":"https://docs.github.com/rest/orgs/webhooks#create-an-organization-webhook","status":"422"}'
+    content_type: text/plain
+    headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+      Content-Security-Policy: default-src 'none'
+      Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+      Vary: Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes: admin:org_hook
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: deny
+      X-GitHub-Media-Type: github.v3; format=json
+      X-GitHub-Request-Id: C32F:33101:A92AC1F:AB929DB:671D0DFB
+      X-OAuth-Scopes: admin:enterprise, admin:org, admin:org_hook, read:packages,
+        repo, user, workflow
+      X-RateLimit-Limit: '5000'
+      X-RateLimit-Remaining: '4893'
+      X-RateLimit-Reset: '1729959422'
+      X-RateLimit-Resource: core
+      X-RateLimit-Used: '107'
+      X-XSS-Protection: '0'
+      x-github-api-version-selected: '2022-11-28'
+      x-oauth-client-id: Ov23liPVKwqwjk08GrHY
+    method: POST
+    status: 422
+    url: https://api.github.com:443/orgs/actions-insider/hooks
+- response:
+    auto_calculate_content_length: false
+    body: '[{"type":"Organization","id":509519729,"name":"web","active":true,"events":["workflow_job","workflow_run"],"config":{"content_type":"json","insecure_ssl":"0","url":"https://buildbudget.dev/webhook"},"updated_at":"2024-10-26T10:11:35Z","created_at":"2024-10-26T10:11:35Z","url":"https://api.github.com/orgs/actions-insider/hooks/509519729","ping_url":"https://api.github.com/orgs/actions-insider/hooks/509519729/pings","deliveries_url":"https://api.github.com/orgs/actions-insider/hooks/509519729/deliveries"}]'
+    content_type: text/plain
+    headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+      Cache-Control: private, max-age=60, s-maxage=60
+      Content-Security-Policy: default-src 'none'
+      ETag: W/"fcd189214be8c6a0e2239a0a9610e29fbbe0bd0ed33f40322d72b785d135dc4e"
+      Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding: chunked
+      Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes: admin:org_hook
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: deny
+      X-GitHub-Media-Type: github.v3; format=json
+      X-GitHub-Request-Id: C32F:33101:A92AD42:AB92B0B:671D0DFC
+      X-OAuth-Scopes: admin:enterprise, admin:org, admin:org_hook, read:packages,
+        repo, user, workflow
+      X-RateLimit-Limit: '5000'
+      X-RateLimit-Remaining: '4892'
+      X-RateLimit-Reset: '1729959422'
+      X-RateLimit-Resource: core
+      X-RateLimit-Used: '108'
+      X-XSS-Protection: '0'
+      x-github-api-version-selected: '2022-11-28'
+      x-oauth-client-id: Ov23liPVKwqwjk08GrHY
+    method: GET
+    status: 200
+    url: https://api.github.com:443/orgs/actions-insider/hooks
+- response:
+    auto_calculate_content_length: false
+    body: '{"type":"Organization","id":509519729,"name":"web","active":true,"events":["workflow_job","workflow_run"],"config":{"content_type":"json","insecure_ssl":"0","url":"https://buildbudget.dev/webhook"},"updated_at":"2024-10-26T10:11:35Z","created_at":"2024-10-26T10:11:35Z","url":"https://api.github.com/orgs/actions-insider/hooks/509519729","ping_url":"https://api.github.com/orgs/actions-insider/hooks/509519729/pings","deliveries_url":"https://api.github.com/orgs/actions-insider/hooks/509519729/deliveries"}'
+    content_type: text/plain
+    headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+      Cache-Control: private, max-age=60, s-maxage=60
+      Content-Security-Policy: default-src 'none'
+      ETag: W/"6577c84afd56d4cb169e3b41e06cba11c7e5ffeb575fa393b6fa9c20d2985145"
+      Last-Modified: Sat, 26 Oct 2024 10:11:35 GMT
+      Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding: chunked
+      Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes: admin:org_hook
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: deny
+      X-GitHub-Media-Type: github.v3; format=json
+      X-GitHub-Request-Id: C32F:33101:A92AE6C:AB92C29:671D0DFC
+      X-OAuth-Scopes: admin:enterprise, admin:org, admin:org_hook, read:packages,
+        repo, user, workflow
+      X-RateLimit-Limit: '5000'
+      X-RateLimit-Remaining: '4891'
+      X-RateLimit-Reset: '1729959422'
+      X-RateLimit-Resource: core
+      X-RateLimit-Used: '109'
+      X-XSS-Protection: '0'
+      x-github-api-version-selected: '2022-11-28'
+      x-oauth-client-id: Ov23liPVKwqwjk08GrHY
+    method: GET
+    status: 200
+    url: https://api.github.com:443/orgs/actions-insider/hooks/509519729

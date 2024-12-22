@@ -1,0 +1,171 @@
+{% extends "actions_data/base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="webhook-registration-section">
+        <div class="container">
+            <div class="integration-section">
+                <h3>GitHub.com Integration</h3>
+
+                {% if not github_account %}
+                    <div class="github-connect">
+                        <p>Install the app in your organizations and repos.</p>
+                        <a href="{% url 'social:begin' 'github-app' %}" class="button github-button">
+                            Connect GitHub Repos
+                        </a>
+                    </div>
+                {% else %}
+                    <div id="github-organizations">
+                        {% for org in github_orgs %}
+                            <div class="org-section">
+                                <div class="org-header" data-org="{{ org.org.login }}">
+                                    <div class="org-header-content">
+                                        <svg class="chevron" viewBox="0 0 24 24" width="20" height="20">
+                                            <path fill="none" stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/>
+                                        </svg>
+                                        <div class="org-info">
+                                            <h4>{{ org.org.login }}</h4>
+                                            <span class="repository-count">{{ org.user_repos|length }} repositories enabled</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="repos-list collapsed">
+                                    <div class="repos-grid">
+                                        {% for repo in org.user_repos %}
+                                            <div class="repo-item">
+                                                <a href="{{ repo.repo.html_url }}" class="repo-link">
+                                                    {{ repo.repo.name }}
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="github-connect">
+                        <a href="{{ github_app_url }}" class="button github-button">Add more orgs and repos</a>
+                    </div>
+                    <br/>
+                    <div class="github-connect">
+                        <a href="{% url 'stats_by_org' %}" class="button github-button">Go to Dashboard</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .org-header {
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .org-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .org-header-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .org-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chevron {
+            color: #666;
+            transition: transform 0.2s;
+        }
+
+        .org-header[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+        }
+
+        .repository-count {
+            font-size: 0.875rem;
+            color: #2e7d32;
+            background-color: #e8f5e9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+        }
+
+        .repos-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .repos-list.expanded {
+            max-height: none;
+        }
+
+        .repos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .repo-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .repo-link {
+            display: block;
+            padding: 0.75rem;
+            color: #2c3e50;
+            text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .repo-link:hover {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .org-section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Add this to contain the expanded content */
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.org-header').forEach(header => {
+                header.setAttribute('aria-expanded', 'false');
+
+                header.addEventListener('click', function () {
+                    const reposList = this.nextElementSibling;
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    reposList.classList.toggle('expanded');
+                });
+            });
+        });
+    </script>
+{% endblock %}

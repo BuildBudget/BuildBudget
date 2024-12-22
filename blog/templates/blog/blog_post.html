@@ -1,0 +1,32 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block blog_content %}
+    <article class="blog-post">
+        <div class="post-header">
+            <time datetime="{{ post.published_date|date:'Y-m-d' }}" class="blog-date">
+                {{ post.published_date|date:"F j, Y" }}
+            </time>
+            <h1>{{ post.title }}</h1>
+        </div>
+
+        <div class="post-content">
+            {{ post.content|safe }}
+        </div>
+
+        <div class="post-footer">
+            <div class="post-nav">
+                {% if previous_post %}
+                    <a href="{% url 'blog:blog_post' previous_post.slug %}" class="prev-post">
+                        {{ previous_post.title }}
+                    </a>
+                {% endif %}
+
+                {% if next_post %}
+                    <a href="{% url 'blog:blog_post' next_post.slug %}" class="next-post">
+                        {{ next_post.title }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+{% endblock %}

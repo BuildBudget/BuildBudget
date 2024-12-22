@@ -1,0 +1,6 @@
+black==24.8.0
+responses==0.25.3
+coverage==7.6.1
+pre-commit==3.8.0
+freezegun==1.5.1
+tblib==3.0.0

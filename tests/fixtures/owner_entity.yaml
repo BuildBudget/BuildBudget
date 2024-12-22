@@ -1,0 +1,17 @@
+- model: actions_data.ownerentity
+  pk: 9919
+  fields:
+    login: github
+    avatar_url: https://avatars.githubusercontent.com/u/9919?v=4
+    api_token: null
+    entity_type: Organization
+    webhook_enabled: false
+    fetch_from_api: true
+- model: actions_data.ownerentity
+  pk: 180552589
+  fields:
+    login: actions-insider
+    avatar_url: https://avatars.githubusercontent.com/u/180552589?v=4
+    api_token: null
+    entity_type: Organization
+    webhook_enabled: true

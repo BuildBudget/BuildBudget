@@ -1,0 +1,19 @@
+{% extends 'actions_data/label_management.html' %}
+
+{% block scripts %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const costModeInputs = document.querySelectorAll('input[name="cost_mode"]');
+            costModeInputs.forEach(input => {
+                input.disabled = true;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block submit_entry %}
+{% endblock %}
+
+{% block submit_monthly_cost %}
+{% endblock %}

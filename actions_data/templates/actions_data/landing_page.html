@@ -1,0 +1,531 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'actions_data/_analytics.html' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.svg' %}"/>
+    <title>BuildBudget - Know Your GitHub Actions Costs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <a href="/">
+                <img src="{% static 'images/logo.svg' %}" alt="BuildBudget Logo" width="200" height="50">
+
+            </a>
+            <nav>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'blog:blog_list' %}">Blog</a>
+                <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}">Log in</a>
+                <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}" class="nav-button primary">Get
+                    Started</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>Know Your GitHub Actions Costs</h1>
+            <p>Get detailed insights into your CI/CD spending across repositories, workflows, and jobs.
+                Compare costs between different runner options and optimize your budget.</p>
+            <div class="button-group">
+                <a href="{% url 'demo_stats_by_workflow' %}" class="button primary">
+                    Check our demo
+                </a>
+                <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}" class="button primary">
+                    Try it for GitHub.com
+                </a>
+            </div>
+
+            <div class="preview-section">
+                <div class="dashboard-preview">
+                    <img src="{% static 'images/preview_1.png' %}" alt="BuildBudget Dashboard Interface">
+                    <img src="{% static 'images/preview_2.png' %}" alt="BuildBudget Dashboard Interface">
+                    <img src="{% static 'images/preview_3.png' %}" alt="BuildBudget Dashboard Interface">
+                    <img src="{% static 'images/preview_4.png' %}" alt="BuildBudget Dashboard Interface">
+                    <img src="{% static 'images/preview_5.png' %}" alt="BuildBudget Dashboard Interface">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Powerful Insights at Your Fingertips</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon chart-icon" title="Usage Analytics Icon"></div>
+                    <h3>Usage Analytics</h3>
+                    <p>View detailed breakdowns of your GitHub Actions usage by repository, organization, workflow, and
+                        job.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon cost-icon" title="Cost Estimation Icon"></div>
+                    <h3>Cost Estimation</h3>
+                    <p>Get accurate cost estimates for your GitHub-hosted runners and compare with alternative
+                        providers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon analysis-icon" title="Analysis Icon"></div>
+                    <h3>Top 100 Analysis</h3>
+                    <p>Identify your most resource-intensive workflows and jobs with our detailed Top 100 chart.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Connect GitHub</h3>
+                    <p>Quickly connect your GitHub account or Enterprise Server to start analyzing your Actions
+                        usage.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>View Analytics</h3>
+                    <p>Get immediate insights into your workflow costs and usage patterns across your organizations.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Optimize Costs</h3>
+                    <p>Make informed decisions about your CI/CD infrastructure based on real usage data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p>Free during beta</p>
+            <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}" class="button primary">
+                Get Started Now
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <p>&copy; 2024 BuildBudget. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="mailto:contact@buildbudget.dev">contact@buildbudget.dev</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<style>
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* Header styles */
+    header {
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(8px);
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+
+    nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        color: #4CAF50;
+    }
+
+    .nav-button {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    .nav-button.primary {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .nav-button.primary:hover {
+        background-color: #45a049;
+        color: white;
+    }
+
+    /* Hero section */
+    .hero {
+        padding: 5rem 0;
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: #4a4a4a;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.875rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .button.primary {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .button.primary:hover {
+        background-color: #45a049;
+        transform: translateY(-1px);
+    }
+
+    .button.secondary {
+        border: 1px solid #4CAF50;
+        color: #4CAF50;
+    }
+
+    .button.secondary:hover {
+        background-color: #f0f9f0;
+        transform: translateY(-1px);
+    }
+
+    .icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-left: 0.5rem;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
+
+
+    /* Features section */
+    .features {
+        padding: 5rem 0;
+        background: white;
+    }
+
+    .features h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        padding: 2rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        border-color: #4CAF50;
+        transform: translateY(-2px);
+    }
+
+    .feature-icon {
+        width: 3rem;
+        height: 3rem;
+        background: #f0f9f0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* How It Works section */
+    .how-it-works {
+        padding: 5rem 0;
+        background: #f8f9fa;
+    }
+
+    .how-it-works h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .step-number {
+        width: 3rem;
+        height: 3rem;
+        background: #4CAF50;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+    /* Pricing section */
+    .pricing {
+        padding: 5rem 0;
+        text-align: center;
+        background: white;
+    }
+
+    .pricing h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .pricing p {
+        font-size: 1.25rem;
+        color: #4a4a4a;
+        margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 3rem 0;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    footer a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #4CAF50;
+    }
+
+    /* Dashboard preview styles */
+    .dashboard-preview {
+        position: relative;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 24px;
+        background: #f8f9fa;
+    }
+
+    /* Browser-like top bar */
+    .dashboard-preview::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: #e9ecef;
+        border-bottom: 1px solid #dee2e6;
+        border-radius: 12px 12px 0 0;
+    }
+
+    /* Browser dots */
+    .dashboard-preview::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        width: 12px;
+        height: 12px;
+        background: #ff6b6b;
+        border-radius: 50%;
+        box-shadow: 24px 0 0 #ffd93d, 48px 0 0 #6bff7c;
+    }
+
+    .dashboard-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        margin-top: 40px;
+    }
+
+    .preview-section {
+        padding: 40px 20px;
+        background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+        border-radius: 24px;
+        margin: 40px auto;
+        text-align: center;
+    }
+
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        nav {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .button-group {
+            flex-direction: column;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            padding: 0 1rem;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .dashboard-preview {
+            margin: 0 20px;
+            border: 12px solid #333;
+            border-radius: 24px;
+            padding: 0;
+        }
+
+        .dashboard-preview::before,
+        .dashboard-preview::after {
+            display: none;
+        }
+
+        .dashboard-preview img {
+            margin-top: 0;
+            border: none;
+        }
+    }
+
+    /* Feature icons */
+    .feature-icon {
+        width: 3rem;
+        height: 3rem;
+        background: #f0f9f0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .chart-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 20V10M12 20V4M6 20v-6'/%3E%3C/svg%3E");
+        background-size: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .cost-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'/%3E%3C/svg%3E");
+        background-size: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .analysis-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");
+        background-size: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+</html>

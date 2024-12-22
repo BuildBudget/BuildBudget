@@ -1,0 +1,34 @@
+- model: actions_data.ownerentity
+  pk: 180552589
+  fields:
+    login: actions-insider
+    avatar_url: https://avatars.githubusercontent.com/u/180552589?v=4
+    api_token: null
+    entity_type: Organization
+    webhook_enabled: true
+- model: actions_data.ownerentity
+  pk: 1679647
+  fields:
+    login: eduramirezh
+    avatar_url: https://avatars.githubusercontent.com/u/1679647?v=4
+    api_token: token1
+    entity_type: User
+    webhook_enabled: false
+- model: actions_data.ownerentity
+  pk: 13629408
+  fields:
+    login: kubernetes
+    avatar_url: https://avatars.githubusercontent.com/u/13629408?v=4
+    api_token: null
+    entity_type: Organization
+    webhook_enabled: false
+    fetch_from_api: false
+- model: actions_data.ownerentity
+  pk: 22552083
+  fields:
+    login: ohmyzsh
+    avatar_url: https://avatars.githubusercontent.com/u/13629408?v=4
+    api_token: null
+    entity_type: Organization
+    webhook_enabled: false
+    fetch_from_api: true

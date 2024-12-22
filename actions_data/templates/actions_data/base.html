@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'actions_data/_analytics.html' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BuildBudget{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'actions_data/style.css' %}">
+    {% block extra_css %}{% endblock %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.svg' %}"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <a href="{% url 'landing_page' %}" class="header-link">
+            <img src="{% static 'images/logo.svg' %}" alt="BuildBudget Logo" width="200" height="50">
+        </a>
+        {% block navbar %}
+            {% if user.is_authenticated %}
+                {% include 'actions_data/_omnisearch.html' %}
+                <nav>
+                    <a href="{% url 'stats_by_workflow' %}">Dashboard</a>
+                    <div class="settings-dropdown">
+                        <button class="settings-button">Settings</button>
+                        <div class="settings-content">
+                            <a href="{% url 'label_management' %}">Costs</a>
+                            <a href="{% url 'settings' %}">Repos</a>
+                        </div>
+                    </div>
+                    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </nav>
+            {% endif %}
+        {% endblock %}
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 BuildBudget. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="mailto:contact@buildbudget.dev">Contact</a>
+            |
+            <a href="{% url 'about' %}">About</a>
+            |
+            <a href="{% url 'blog:blog_list' %}" target="_blank">Blog</a>
+        </div>
+    </div>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

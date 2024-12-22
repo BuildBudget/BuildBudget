@@ -1,0 +1,50 @@
+responses:
+- response:
+    auto_calculate_content_length: false
+    body: '{"total_count":1,"jobs":[{"id":30651397511,"run_id":11035432712,"workflow_name":"Docker","head_branch":"main","run_url":"https://api.github.com/repos/actions-insider/hello-world/actions/runs/11035432712","run_attempt":1,"node_id":"CR_kwDOMtVWr88AAAAHIvc1hw","head_sha":"ef46dec383e1683a6e12756d28d6af52dfc60732","url":"https://api.github.com/repos/actions-insider/hello-world/actions/jobs/30651397511","html_url":"https://github.com/actions-insider/hello-world/actions/runs/11035432712/job/30651397511","status":"completed","conclusion":"success","created_at":"2024-09-25T14:43:00Z","started_at":"2024-09-25T14:43:06Z","completed_at":"2024-09-25T14:43:25Z","name":"build","steps":[{"name":"Set
+      up job","status":"completed","conclusion":"success","number":1,"started_at":"2024-09-25T14:43:06Z","completed_at":"2024-09-25T14:43:08Z"},{"name":"Checkout
+      repository","status":"completed","conclusion":"success","number":2,"started_at":"2024-09-25T14:43:08Z","completed_at":"2024-09-25T14:43:08Z"},{"name":"Install
+      cosign","status":"completed","conclusion":"success","number":3,"started_at":"2024-09-25T14:43:10Z","completed_at":"2024-09-25T14:43:10Z"},{"name":"Set
+      up Docker Buildx","status":"completed","conclusion":"success","number":4,"started_at":"2024-09-25T14:43:11Z","completed_at":"2024-09-25T14:43:12Z"},{"name":"Log
+      into registry ghcr.io","status":"completed","conclusion":"success","number":5,"started_at":"2024-09-25T14:43:13Z","completed_at":"2024-09-25T14:43:13Z"},{"name":"Extract
+      Docker metadata","status":"completed","conclusion":"success","number":6,"started_at":"2024-09-25T14:43:13Z","completed_at":"2024-09-25T14:43:13Z"},{"name":"Build
+      and push Docker image","status":"completed","conclusion":"success","number":7,"started_at":"2024-09-25T14:43:13Z","completed_at":"2024-09-25T14:43:18Z"},{"name":"Sign
+      the published Docker image","status":"completed","conclusion":"success","number":8,"started_at":"2024-09-25T14:43:18Z","completed_at":"2024-09-25T14:43:23Z"},{"name":"Post
+      Build and push Docker image","status":"completed","conclusion":"success","number":13,"started_at":"2024-09-25T14:43:23Z","completed_at":"2024-09-25T14:43:23Z"},{"name":"Post
+      Log into registry ghcr.io","status":"completed","conclusion":"success","number":14,"started_at":"2024-09-25T14:43:23Z","completed_at":"2024-09-25T14:43:23Z"},{"name":"Post
+      Set up Docker Buildx","status":"completed","conclusion":"success","number":15,"started_at":"2024-09-25T14:43:24Z","completed_at":"2024-09-25T14:43:24Z"},{"name":"Post
+      Checkout repository","status":"completed","conclusion":"success","number":16,"started_at":"2024-09-25T14:43:25Z","completed_at":"2024-09-25T14:43:25Z"},{"name":"Complete
+      job","status":"completed","conclusion":"success","number":17,"started_at":"2024-09-25T14:43:24Z","completed_at":"2024-09-25T14:43:24Z"}],"check_run_url":"https://api.github.com/repos/actions-insider/hello-world/check-runs/30651397511","labels":["ubuntu-latest"],"runner_id":27,"runner_name":"GitHub
+      Actions 23","runner_group_id":2,"runner_group_name":"GitHub Actions"}]}'
+    content_type: text/plain
+    headers:
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+      Cache-Control: private, max-age=60, s-maxage=60
+      Content-Security-Policy: default-src 'none'
+      ETag: W/"3cf6d78d4006a9ccc2c633d3dc75d756c86ca32e585ddcb15ff889dc1e598478"
+      Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding: chunked
+      Vary: Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes: ''
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: deny
+      X-GitHub-Media-Type: github.v3; format=json
+      X-GitHub-Request-Id: 2C35:32C65E:144D938:14A4455:66F67746
+      X-OAuth-Scopes: admin:enterprise, admin:org, admin:org_hook, read:packages,
+        repo, user, workflow
+      X-RateLimit-Limit: '15000'
+      X-RateLimit-Remaining: '14995'
+      X-RateLimit-Reset: '1727431819'
+      X-RateLimit-Resource: core
+      X-RateLimit-Used: '5'
+      X-XSS-Protection: '0'
+      x-github-api-version-selected: '2022-11-28'
+      x-oauth-client-id: Ov23liPVKwqwjk08GrHY
+    method: GET
+    status: 200
+    url: https://api.github.com:443/repos/actions-insider/hello-world/actions/runs/11035432712/attempts/1/jobs

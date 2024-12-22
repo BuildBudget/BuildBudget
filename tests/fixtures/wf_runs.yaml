@@ -1,0 +1,40 @@
+- model: actions_data.workflowrun
+  pk: 27261
+  fields:
+    run_id: 11018965781
+    name: 'PR Check - Go: tracing with autobuilder step'
+    node_id: WFR_kwLOD3bUds8AAAACkMgTFQ
+    head_branch: mergeback/v3.26.9-to-main-461ef6c7
+    head_sha: da7be78a1ea4e90acbaa595fcc5606082dba4591
+    path: .github/workflows/__go-tracing-autobuilder.yml
+    display_title: Mergeback v3.26.9 refs/heads/releases/v3 into main
+    run_number: 3560
+    event: pull_request
+    status: completed
+    conclusion: success
+    workflow: 39667626
+    check_suite_id: 28791702955
+    check_suite_node_id: CS_kwDOD3bUds8AAAAGtB6Fqw
+    url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781
+    html_url: https://github.com/github/codeql-action/actions/runs/11018965781
+    created_at: 2024-09-24 17:33:47+00:00
+    updated_at: 2024-09-24 17:40:33+00:00
+    actor: null
+    run_attempt: 1
+    run_started_at: 2024-09-24 17:33:47+00:00
+    triggering_actor: null
+    jobs_url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781/attempts/1/jobs
+    logs_url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781/attempts/1/logs
+    check_suite_url: https://api.github.com/repos/github/codeql-action/check-suites/28791702955
+    artifacts_url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781/artifacts
+    cancel_url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781/cancel
+    rerun_url: https://api.github.com/repos/github/codeql-action/actions/runs/11018965781/rerun
+    previous_attempt_url: null
+    workflow_url: https://api.github.com/repos/github/codeql-action/actions/workflows/39667626
+    head_commit: null
+    repository: 259445878
+    head_repository: null
+    job_data_collected: true
+    pull_requests: []
+    referenced_workflows: []
+    webhook_events: []

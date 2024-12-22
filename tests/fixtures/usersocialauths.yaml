@@ -1,0 +1,45 @@
+- model: social_django.usersocialauth
+  pk: 1
+  fields:
+    user: 34
+    provider: github-app
+    uid: '1679647'
+    extra_data:
+      id: 1679647
+      login: eduramirezh
+      expires: null
+      auth_time: 1730643354
+      token_type: bearer
+      access_token: token1
+    created: 2024-08-29 11:54:04.075873+00:00
+    modified: 2024-11-03 14:15:54.755020+00:00
+- model: social_django.usersocialauth
+  pk: 101
+  fields:
+    user: 2
+    provider: github-app
+    uid: '186915456'
+    extra_data:
+      id: 186915456
+      login: eduramirezh-dummy4
+      expires: null
+      auth_time: 1730715665
+      token_type: bearer
+      access_token: token2
+    created: 2024-11-04 10:20:34.293971+00:00
+    modified: 2024-11-04 10:21:05.221033+00:00
+- model: social_django.usersocialauth
+  pk: 102
+  fields:
+    user: 3
+    provider: github-app
+    uid: '186915155'
+    extra_data:
+      id: 186915155
+      login: eduramirezh-dummy2
+      expires: null
+      auth_time: 1730715706
+      token_type: bearer
+      access_token: token3
+    created: 2024-11-04 10:21:46.562365+00:00
+    modified: 2024-11-04 10:21:46.563153+00:00

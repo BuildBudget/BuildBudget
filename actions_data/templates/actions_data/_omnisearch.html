@@ -1,0 +1,238 @@
+<div class="search-container">
+    <div class="search-input-wrapper">
+
+        <input type="text"
+               id="omni-search"
+               class="search-input"
+               placeholder="Search repositories, organizations, workflows..."
+               autocomplete="off">
+    </div>
+    <div id="search-results" class="search-results hidden"></div>
+</div>
+
+<style>
+    .search-container {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        width: 400px;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .search-input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+
+    .search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin-top: 4px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        max-height: 400px;
+        overflow-y: auto;
+        z-index: 50;
+    }
+
+    .search-results.hidden {
+        display: none;
+    }
+
+    .search-result-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        text-decoration: none;
+        color: inherit;
+        transition: background-color 0.2s;
+    }
+
+    .search-result-item:hover {
+        background-color: #f3f4f6;
+    }
+
+    .result-icon {
+        margin-right: 12px;
+        font-size: 20px;
+    }
+
+    .result-content {
+        flex: 1;
+    }
+
+    .result-title {
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .result-type {
+        font-size: 14px;
+        color: #6b7280;
+    }
+
+    .loading {
+        text-align: center;
+        padding: 12px;
+        color: #6b7280;
+    }
+</style>
+
+<script>
+    // Configuration object for search types and their icons
+    const searchTypes = {
+        repo: {label: 'Repository', icon: '📦'},
+        org: {label: 'Organization', icon: '🏢'},
+        workflow: {label: 'Workflow', icon: '⚙️'},
+        job: {label: 'Job', icon: '🔧'}
+    };
+
+    class OmniSearch {
+        constructor() {
+            // Initialize elements
+            this.searchInput = document.getElementById('omni-search');
+            this.resultsContainer = document.getElementById('search-results');
+
+            // Initialize state
+            this.debounceTimer = null;
+            this.currentQuery = '';
+
+            // Bind event listeners
+            this.searchInput.addEventListener('input', this.handleInput.bind(this));
+            this.searchInput.addEventListener('focus', () => {
+                if (this.currentQuery) {
+                    this.showResults();
+                }
+            });
+
+            const is_demo = {{ is_demo|yesno:"true,false" }};
+
+            if (is_demo) {
+                this.apiURL = "{% url 'demo_api_search' %}";
+            } else {
+                this.apiURL = "{% url 'api_search' %}";
+            }
+
+            // Close results when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!this.searchInput.contains(e.target) &&
+                    !this.resultsContainer.contains(e.target)) {
+                    this.hideResults();
+                }
+            });
+        }
+
+        handleInput(event) {
+            const query = event.target.value.trim();
+            this.currentQuery = query;
+
+            // Clear previous timer
+            if (this.debounceTimer) {
+                clearTimeout(this.debounceTimer);
+            }
+
+            if (query.length < 2) {
+                this.hideResults();
+                return;
+            }
+
+            // Set loading state
+            this.showLoading();
+
+            // Debounce the search
+            this.debounceTimer = setTimeout(() => {
+                this.performSearch(query);
+            }, 300);
+        }
+
+        async performSearch(query) {
+            try {
+                const response = await fetch(`${this.apiURL}?q=${encodeURIComponent(query)}`);
+                if (!response.ok) throw new Error('Search failed');
+
+                const data = await response.json();
+
+                // Only update if this is still the current query
+                if (query === this.currentQuery) {
+                    this.renderResults(data);
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                this.renderError();
+            }
+        }
+
+        renderResults(data) {
+            if (!data.length) {
+                this.resultsContainer.innerHTML = `
+                <div class="search-result-item">
+                    <div class="result-content">No results found</div>
+                </div>`;
+            } else {
+                this.resultsContainer.innerHTML = data.map(result => `
+                <a href="${result.url}" class="search-result-item">
+                    <span class="result-icon">${searchTypes[result.type].icon}</span>
+                    <div class="result-content">
+                        <div class="result-title">${this.escapeHtml(result.name)}</div>
+                        <div class="result-type">${searchTypes[result.type].label}</div>
+                    </div>
+                </a>
+            `).join('');
+            }
+            this.showResults();
+        }
+
+        showLoading() {
+            this.resultsContainer.innerHTML = `
+            <div class="loading">Searching...</div>`;
+            this.showResults();
+        }
+
+        renderError() {
+            this.resultsContainer.innerHTML = `
+            <div class="search-result-item">
+                <div class="result-content">An error occurred. Please try again.</div>
+            </div>`;
+            this.showResults();
+        }
+
+        showResults() {
+            this.resultsContainer.classList.remove('hidden');
+        }
+
+        hideResults() {
+            this.resultsContainer.classList.add('hidden');
+        }
+
+        escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    }
+
+    // Initialize the search when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        new OmniSearch();
+    });
+</script>

@@ -1,0 +1,12 @@
+{% extends 'actions_data/repository.html' %}
+{% block navbar %}
+    {% include 'actions_data/_omnisearch.html' with is_demo=True %}
+    <nav>
+        <div>DEMO</div>
+        <a href="{% url 'demo_stats_by_workflow' %}">Dashboard</a>
+    </nav>
+{% endblock %}
+
+{% block workflow_summary_link %}
+    <a href="{% url 'demo_workflow_stats' pk=workflow.id %}" class="button">View Details</a>
+{% endblock %}

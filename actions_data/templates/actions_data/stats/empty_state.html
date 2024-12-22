@@ -1,0 +1,94 @@
+{% load static %}
+<div class="no-data-container">
+    <div class="no-data-content">
+        <h2>No GitHub Actions data available yet</h2>
+        <p>To start analyzing your GitHub Actions usage and costs, you'll need to connect your repositories first.</p>
+        <div class="no-data-actions">
+            <a href="{{ user.userprofile.webhook_settings_url }}" class="button primary-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Go to Settings
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .no-data-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+        margin: 2rem auto;
+        max-width: 600px;
+    }
+
+    .no-data-content {
+        text-align: center;
+        padding: 2rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .no-data-image {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 1.5rem;
+    }
+
+    .no-data-content h2 {
+        margin-bottom: 1rem;
+        color: #2d3748;
+    }
+
+    .no-data-content p {
+        color: #4a5568;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .no-data-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    .primary-button {
+        background-color: #0366d6;
+        color: white;
+    }
+
+    .primary-button:hover {
+        background-color: #0255b3;
+    }
+
+    .secondary-button {
+        background-color: #f1f5f9;
+        color: #475569;
+    }
+
+    .secondary-button:hover {
+        background-color: #e2e8f0;
+    }
+
+    .button-icon {
+        width: 20px;
+        height: 20px;
+    }
+</style>

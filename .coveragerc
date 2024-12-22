@@ -1,0 +1,17 @@
+[run]
+branch = True
+source = .
+omit =
+    tests/conftest.py
+    manage.py
+    actions_insider/*sgi.py
+    */migrations/*
+    */create_fixture.py
+
+[report]
+sort = Miss
+skip_covered = True
+skip_empty = True
+show_missing = True
+exclude_also =
+    raise NotImplementedError

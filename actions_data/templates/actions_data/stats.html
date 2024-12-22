@@ -1,0 +1,97 @@
+{% extends 'actions_data/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - BuildBudget{% endblock %}
+
+{% block content %}
+    <h1>GitHub Actions Usage And Cost Analysis</h1>
+    <p>Visualize your GitHub Actions usage and costs. Click on an entry to see details.</p>
+    {% if missing_labels %}
+        <div class="alert alert-warning">
+            <p>Your data is missing costs for the following runner labels: {{ missing_labels }}</p>
+            <a href="{% url 'label_management' %}" class="alert-link">Manage labels</a>
+        </div>
+    {% endif %}
+    <div class="filter-container">
+        <div class="selector-group">
+            <label class="selector-label">View</label>
+            <select class="custom-select" id="viewSelector">
+                {% block chart_options %}
+                    <option value="{% url 'stats_by_job' %}" {% if view == 'job' %}selected{% endif %}>By Job
+                    </option>
+                    <option value="{% url 'stats_by_workflow' %}" {% if view == 'workflow' %}selected{% endif %}>By
+                        Workflow
+                    </option>
+                    <option value="{% url 'stats_by_repo' %}" {% if view == 'repo' %}selected{% endif %}>By
+                        Repository
+                    </option>
+                    <option value="{% url 'stats_by_org' %}" {% if view == 'org' %}selected{% endif %}>By
+                        Organization
+                    </option>
+                    <option value="{% url 'stats_by_labels' %}" {% if view == 'labels' %}selected{% endif %}>By
+                        Labels
+                    </option>
+                {% endblock chart_options %}
+            </select>
+        </div>
+        <div class="selector-group">
+            <label class="selector-label">Time Period</label>
+            <select id="dateFilter" class="custom-select">
+                {% block date_filter %}
+                    <option value="past_day" {% if date_filter == 'past_day' %}selected{% endif %}>Past Day</option>
+                    <option value="past_week" {% if date_filter == 'past_week' %}selected{% endif %}>Past Week</option>
+                    <option value="past_month" {% if date_filter == 'past_month' %}selected{% endif %}>Past Month
+                    </option>
+                {% endblock date_filter %}
+            </select>
+        </div>
+
+        <div class="selector-group">
+            <label class="selector-label">Metric</label>
+            <select class="custom-select" name="metric" id="showCostMetrics">
+                <option value="cost">Cost</option>
+                <option value="time">Time</option>
+            </select>
+        </div>
+
+        <div class="selector-group">
+            <label class="selector-label"> Show entries:</label>
+            <select id="showEntries" class="custom-select">
+                <option value="10">Top 10</option>
+                <option value="20">Top 20</option>
+                <option value="50">Top 50</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+
+    </div>
+
+    {% if has_data %}
+        {% include 'actions_data/stats/chart.html' %}
+    {% else %}
+        {% include 'actions_data/stats/empty_state.html' %}
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const viewSelector = document.getElementById('viewSelector');
+            const dateFilter = document.getElementById('dateFilter');
+
+            function updateURL() {
+                const baseUrl = `${viewSelector.value}`;
+                const params = new URLSearchParams({
+                    date_filter: dateFilter.value,
+                });
+
+                window.location.href = `${baseUrl}?${params.toString()}`;
+            }
+
+            viewSelector.addEventListener('change', updateURL);
+            dateFilter.addEventListener('change', updateURL);
+        });
+        {%  block label_management_url %}
+            const label_management_url = "{% url 'label_management' %}";
+        {% endblock %}
+    </script>
+{% endblock %}

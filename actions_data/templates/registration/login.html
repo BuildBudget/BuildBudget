@@ -1,0 +1,167 @@
+{% extends "actions_data/base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="hero">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <div class="auth-status">
+                    <h2>You're already signed in</h2>
+                    <p>Currently logged in as <strong>{{ user.username }}</strong></p>
+                    <div class="auth-actions">
+                        <a href="{% url 'stats_by_repo' %}" class="button">Go to Dashboard</a>
+                        <form method="post" action="{% url 'logout' %}" class="inline-form">
+                            {% csrf_token %}
+                            <button type="submit" class="button button-secondary">Sign Out</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <h2>Log in to BuildBudget</h2>
+
+                <div class="login-options">
+                    <div class="github-com">
+                        <h3>GitHub.com Users</h3>
+                        <p>Use your GitHub.com account to sign in:</p>
+                        <a href="{% url 'social:begin' 'github-app' %}" class="button github-button">
+                            <img src="{% static 'images/github-mark.svg' %}" alt="GitHub Logo" class="github-logo">
+                            Continue with GitHub.com
+                        </a>
+                    </div>
+
+                    <div class="login-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <div class="github-enterprise">
+                        <h3>GitHub Enterprise Server Users</h3>
+                        <p>Please log in with your credentials:</p>
+
+                        {% if form.errors %}
+                            <div class="error-message">
+                                <p>Please correct the following errors:</p>
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="button">Log In</button>
+                        </form>
+                    </div>
+                </div>
+
+                <p class="signup-link">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+            {% endif %}
+
+            <style>
+                .login-options {
+                    max-width: 500px;
+                    margin: 0 auto;
+                }
+
+                .github-com, .github-enterprise {
+                    padding: 20px;
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                }
+
+                .login-divider {
+                    text-align: center;
+                    margin: 20px 0;
+                    position: relative;
+                }
+
+                .login-divider::before,
+                .login-divider::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    width: 45%;
+                    height: 1px;
+                    background: #ddd;
+                }
+
+                .login-divider::before {
+                    left: 0;
+                }
+
+                .login-divider::after {
+                    right: 0;
+                }
+
+                .login-divider span {
+                    background: #fff;
+                    padding: 0 10px;
+                    color: #666;
+                }
+
+                .github-button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    width: 100%;
+                    background: #24292e;
+                    color: white;
+                    text-decoration: none;
+                    padding: 12px;
+                    border-radius: 6px;
+                    margin-top: 15px;
+                }
+
+                .github-logo {
+                    width: 20px;
+                    height: 20px;
+                    filter: brightness(0) invert(1);
+                }
+
+                .signup-link {
+                    text-align: center;
+                    margin-top: 30px;
+                }
+
+                h3 {
+                    margin-top: 0;
+                    font-size: 1.2em;
+                }
+
+                /* New styles for authenticated state */
+                .auth-status {
+                    max-width: 500px;
+                    margin: 0 auto;
+                    text-align: center;
+                    padding: 30px;
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                }
+
+                .auth-actions {
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                    margin-top: 20px;
+                }
+
+                .button-secondary {
+                    background: #6c757d;
+                }
+
+                .inline-form {
+                    display: inline;
+                }
+            </style>
+        </div>
+    </section>
+{% endblock %}

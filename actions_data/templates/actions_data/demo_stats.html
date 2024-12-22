@@ -1,0 +1,24 @@
+{% extends 'actions_data/stats.html' %}
+{% block navbar %}
+    {% include 'actions_data/_omnisearch.html' with is_demo=True %}
+    <nav>
+        <div>DEMO</div>
+    </nav>
+{% endblock %}
+
+{% block chart_options %}
+    <option value="{% url 'demo_stats_by_job' %}" {% if view == 'job' %}selected{% endif %}>By Job</option>
+    <option value="{% url 'demo_stats_by_workflow' %}" {% if view == 'workflow' %}selected{% endif %}>By
+        Workflow
+    </option>
+    <option value="{% url 'demo_stats_by_repo' %}" {% if view == 'repo' %}selected{% endif %}>By Repository
+    </option>
+    <option value="{% url 'demo_stats_by_org' %}" {% if view == 'org' %}selected{% endif %}>By Organization
+    </option>
+    <option value="{% url 'demo_stats_by_labels' %}" {% if view == 'labels' %}selected{% endif %}>By Labels
+    </option>
+{% endblock chart_options %}
+
+{% block label_management_url %}
+    const label_management_url = "{% url 'demo_label_management' %}";
+{% endblock label_management_url %}

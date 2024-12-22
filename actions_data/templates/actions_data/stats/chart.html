@@ -1,0 +1,214 @@
+<div class="chart-container">
+    <div id="statsChart" style="width: 100%;"></div>
+</div>
+
+<style>
+    #statsChart {
+        margin-top: 1rem;
+        min-height: 400px;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chartDom = document.getElementById('statsChart');
+        const myChart = echarts.init(chartDom);
+        const chartData = JSON.parse('{{ chart_data|safe }}');
+
+        // Constants for configuration
+        const MIN_CHART_HEIGHT = 400;
+        const ROW_HEIGHT = 30;
+
+        // Formatters
+        const formatters = {
+            duration: seconds => {
+                if (!seconds && seconds !== 0) return '0s';
+                const num = parseFloat(seconds);
+                if (num >= 3600) return `${(num / 3600).toFixed(1)}h`;
+                if (num >= 60) return `${(num / 60).toFixed(1)}m`;
+                return `${num.toFixed(0)}s`;
+            },
+
+            cost: value => {
+                if (!value && value !== 0) return '$0.00';
+                const num = parseFloat(value);
+                return isNaN(num) ? '' : `$${num.toFixed(2)}`;
+            }
+        };
+
+        function getFilteredData(metricType, limit) {
+            const datasets = {
+                executionTime: chartData.datasets[0].data.map(Number),
+                billableTime: chartData.datasets[1].data.map(Number),
+                costs: chartData.datasets[2].data.map(Number)
+            };
+
+            const sortValue = metricType === 'cost' ? datasets.costs : datasets.billableTime;
+            const indexes = Array.from(chartData.labels.keys())
+                .sort((a, b) => sortValue[b] - sortValue[a]);
+
+            const filteredIndexes = limit === 'all' ? indexes : indexes.slice(0, parseInt(limit));
+
+            return {
+                labels: filteredIndexes.map(i => chartData.labels[i]).reverse(),
+                executionTime: filteredIndexes.map(i => datasets.executionTime[i]).reverse(),
+                billableTime: filteredIndexes.map(i => datasets.billableTime[i]).reverse(),
+                costs: filteredIndexes.map(i => datasets.costs[i]).reverse(),
+                fullLabels: filteredIndexes.map(i => chartData.full_labels[i]).reverse(),
+                urls: filteredIndexes.map(i => chartData.urls[i]).reverse()
+            };
+        }
+
+        function getChartOptions(data, metricType) {
+            const showCostMetrics = metricType === 'cost';
+
+            const baseSeriesConfig = {
+                type: 'bar',
+                barWidth: '60%',
+                label: {
+                    show: true,
+                    position: 'right',
+                    distance: 15,
+                    formatter: params => showCostMetrics
+                        ? formatters.cost(params.value)
+                        : formatters.duration(params.value)
+                }
+            };
+
+            const series = showCostMetrics ? [{
+                ...baseSeriesConfig,
+                name: 'Cost',
+                data: data.costs,
+                itemStyle: {color: 'rgba(40, 167, 69, 0.8)'}
+            }] : [
+                {
+                    ...baseSeriesConfig,
+                    name: 'Billable Time',
+                    data: data.billableTime,
+                    z: 1,
+                    itemStyle: {color: 'rgba(0, 123, 255, 0.3)'}
+                },
+                {
+                    ...baseSeriesConfig,
+                    name: 'Execution Time',
+                    data: data.executionTime,
+                    barGap: '-100%',
+                    z: 2,
+                    label: {
+                        show: false  // Hide execution time labels
+                    },
+                    itemStyle: {color: 'rgba(0, 123, 255, 0.8)'}
+                }
+            ];
+
+            return {
+                animation: false,
+                legend: {
+                    show: !showCostMetrics,
+                    top: 0,
+                    data: ['Execution Time', 'Billable Time'],
+                    tooltip: {
+                        show: true,
+                        formatter: name => {
+                            if (name === 'Execution Time') return 'Actual time spent running the workflow';
+                            if (name === 'Billable Time') return 'Time charged by GitHub Actions (rounded up to the nearest minute)';
+                        }
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {type: 'shadow'},
+                    formatter: params => {
+                        let tooltip = `<strong>${data.fullLabels[params[0].dataIndex]}</strong><br/>`;
+                        if (showCostMetrics) {
+                            const cost = formatters.cost(data.costs[params[0].dataIndex]);
+                            return cost ? `${tooltip}Cost: ${cost}` : tooltip;
+                        }
+                        const billable = formatters.duration(data.billableTime[params[0].dataIndex]);
+                        const execution = formatters.duration(data.executionTime[params[0].dataIndex]);
+                        return `${tooltip}Billable Time: ${billable}<br/>Execution Time: ${execution}`;
+                    }
+                },
+                grid: {
+                    top: showCostMetrics ? 80 : 60,
+                    right: 150,
+                    bottom: 30,
+                    left: 200,
+                    containLabel: true
+                },
+                graphic: showCostMetrics ? [{
+                    type: 'text',
+                    left: 'center',
+                    top: 30,
+                    style: {
+                        text: 'Manage cost calculation settings',
+                        fontSize: 14,
+                        fill: '#4CAF50',
+                        textDecoration: 'underline'
+                    },
+                    cursor: 'pointer',
+                    onclick: function () {
+                        window.location.href = label_management_url;
+                    }
+                }] : [],
+                dataZoom: [{
+                    type: 'slider',
+                    show: data.labels.length > 20,
+                    yAxisIndex: 0,
+                    right: 0,
+                    width: 20,
+                    start: 0,
+                    end: 100
+                }],
+                yAxis: [{
+                    type: 'category',
+                    data: data.labels,
+                    axisLabel: {
+                        width: 180,
+                        overflow: 'truncate',
+                        interval: 0
+                    }
+                }],
+                xAxis: [{
+                    type: 'value',
+                    name: showCostMetrics ? 'Cost ($)' : 'Time (seconds)',
+                    axisLabel: {
+                        formatter: showCostMetrics ? formatters.cost : formatters.duration
+                    }
+                }],
+                series
+            };
+        }
+
+
+        function updateChart(metricType, limit) {
+            const data = getFilteredData(metricType, limit);
+            const chartHeight = Math.max(MIN_CHART_HEIGHT, data.labels.length * ROW_HEIGHT);
+            chartDom.style.height = `${chartHeight}px`;
+
+            myChart.clear();
+            myChart.setOption(getChartOptions(data, metricType));
+            myChart.resize();
+        }
+
+        // Event handlers
+        const metricSelect = document.getElementById('showCostMetrics');
+        const entriesSelect = document.getElementById('showEntries');
+
+        metricSelect.addEventListener('change', () =>
+            updateChart(metricSelect.value, entriesSelect.value));
+        entriesSelect.addEventListener('change', () =>
+            updateChart(metricSelect.value, entriesSelect.value));
+        window.addEventListener('resize', () => myChart.resize());
+
+        myChart.on('click', params => {
+            const data = getFilteredData(metricSelect.value, entriesSelect.value);
+            const url = data.urls?.[params.dataIndex];
+            if (url) window.open(url, '_blank');
+        });
+
+        // Initialize chart
+        updateChart(metricSelect.value, entriesSelect.value);
+    });
+</script>

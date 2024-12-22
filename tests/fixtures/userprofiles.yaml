@@ -1,0 +1,15 @@
+- model: actions_data.userprofile
+  pk: 1
+  fields:
+    user: 34
+    webhook_secret: ''
+- model: actions_data.userprofile
+  pk: 2
+  fields:
+    user: 1
+    webhook_secret: ''
+- model: actions_data.userprofile
+  pk: 3
+  fields:
+    user: 2
+    webhook_secret: ''

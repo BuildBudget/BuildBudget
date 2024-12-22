@@ -1,0 +1,10 @@
+<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo symbol -->
+  <rect x="0" y="10" width="30" height="30" fill="#4CAF50" rx="5" />
+  <rect x="10" y="15" width="10" height="10" fill="white" rx="2" />
+  <rect x="10" y="30" width="10" height="10" fill="white" rx="2" />
+
+  <!-- Logo text -->
+  <text x="40" y="35" font-family="Arial, sans-serif" font-size="20" fill="#333333">Build</text>
+  <text x="84" y="35" font-family="Arial, sans-serif" font-size="20" fill="#4CAF50">Budget</text>
+</svg>

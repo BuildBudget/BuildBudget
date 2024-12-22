@@ -1,0 +1,57 @@
+{% extends 'actions_data/base.html' %}
+{% load static %}
+
+{% block title %}BuildBudget Blog{% endblock %}
+
+{% block navbar %}
+    <nav>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'blog:blog_list' %}">Blog</a>
+        <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}">Log in</a>
+        <a href="{% url 'social:begin' 'github-app' %}?next={% url 'settings' %}" class="nav-button primary">Get
+            Started</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    {% block blog_content %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .nav-button {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .nav-button.primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .nav-button.primary:hover {
+            background-color: #45a049;
+            color: white;
+        }
+    </style>
+{% endblock %}
