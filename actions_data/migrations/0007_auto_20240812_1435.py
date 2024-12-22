@@ -11,7 +11,7 @@ load_dotenv()
 
 def populate_user_data(apps, schema_editor):
     OwnerEntity = apps.get_model("actions_data", "OwnerEntity")
-    api_token = os.environ.get("ACTIONS_INSIDER_API_TOKEN")
+    api_token = os.environ.get("ACTIONS_INSIDER_API_TOKEN", "")
     OwnerEntity.objects.create(
         id=1679647,
         login="eduramirezh",
